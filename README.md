@@ -26,18 +26,46 @@ graph TD
 
 ## 安装
 
-### 方式一：通过 Claude Code 插件市场
+**要求：** Claude Code >= 1.0.37（支持插件系统）
+
+### 方式一：从 GitHub 安装（推荐）
 
 ```bash
-# 从本地目录安装
-claude plugins install g:\AI4Application\claude-useful-skills
+claude plugins install https://github.com/Azzygoatcoder/code-security-skills
 ```
 
-### 方式二：手动链接
+Claude Code 会自动克隆仓库并注册 `skills/` 目录下的全部技能。安装后重启 Claude Code 会话即可生效。
 
-将 `skills/` 目录下的技能文件夹复制或符号链接到 `~/.claude/skills/`。
+### 方式二：手动安装
 
-**要求：** Claude Code >= 1.0.37（支持插件系统）
+将 `skills/` 下各技能目录复制或符号链接到用户级技能目录：
+
+#### macOS / Linux
+
+```bash
+ln -s "$(pwd)/skills/code-security-audit" ~/.claude/skills/code-security-audit
+ln -s "$(pwd)/skills/audit" ~/.claude/skills/audit
+ln -s "$(pwd)/skills/reaudit" ~/.claude/skills/reaudit
+ln -s "$(pwd)/skills/security-fix-skill" ~/.claude/skills/security-fix-skill
+```
+
+#### Windows (PowerShell)
+
+```powershell
+New-Item -ItemType Junction -Path "$env:USERPROFILE\.claude\skills\code-security-audit" -Target "$pwd\skills\code-security-audit"
+# 对 audit、reaudit、security-fix-skill 重复
+```
+
+### 验证安装
+
+安装后，在 Claude Code 中输入以下命令确认技能已加载：
+
+```bash
+/audit    # 应触发安全审计流程
+/reaudit  # 应触发重审计流程
+```
+
+或直接说 "audit this repo" 测试自然语言触发。
 
 ## 审计工作流
 
