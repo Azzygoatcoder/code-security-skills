@@ -3,7 +3,7 @@
   "description": "Code security audit skills for Claude Code — systematic vulnerability assessment, security fix workflow, and re-audit verification",
   "version": "1.0.0",
   "author": {
-    "name": "Lenovo"
+    "name": "Azzygoatcoder"
   },
   "license": "MIT",
   "keywords": ["security", "audit", "vulnerability", "code-review", "sast"]
