@@ -50,25 +50,27 @@ mode is monkeypatch targets changing when code moves between modules.
 Commit all fixes at the current priority level together:
 ```bash
 git add -A
-git commit -m "fix: security P<N> — <summary of fixes>"
+git commit -m "fix: security — <summary> (P<N> SSRF-1 PATH-1 AUTH-1)"
 ```
 
-Use conventional commit format.  Push when requested by the user.
+Use conventional commit format. Include the finding IDs in the commit message
+body so they are traceable.  Push when requested by the user.
 
-### Step 5: Move to next priority
+### Step 5: Mark-fixed and move to next priority
 
-Repeat steps 2–4 for the next priority level.  Typical execution order:
-P1 (5 findings, ~15 min) → P2 (4 findings, ~10 min) → P3 (3 findings, ~10 min) → P4 (4 findings, ~10 min)
+After committing each priority batch:
+1. Run `/reaudit mark-fixed <ID>` for each finding in the batch. This updates
+   the report's status annotations without re-reading files.
+2. Repeat steps 2–5 for the next priority level.  Typical execution order:
+   P1 (5 findings, ~15 min) → P2 (4 findings, ~10 min) → P3 (3 findings, ~10 min) → P4 (4 findings, ~10 min)
 
 ### Step 6: Final verification
 
-After all priorities are committed, delegate verification to the re-audit skill:
-
-> "Run `/reaudit` to verify all fixes are in place."
-
-The `code-security-audit` Phase 4 provides systematic verification: reads each fixed
-file, classifies findings as Fixed/Not Fixed/Partially Fixed, checks for regressions,
-and updates the audit document with a Re-Audit section.
+After all priorities are committed and marked, verify the state:
+1. Run `/reaudit status` to confirm all findings are `fixed` or `deferred`
+2. If any findings remain `open` or `not-fixed`, ask the user how to handle
+3. Optionally run a targeted `/reaudit` on the changed files only to double-check
+   no regressions were introduced
 
 ### Common fix patterns
 
@@ -109,5 +111,6 @@ files.
   the re-audit
 - **Findings in files the user doesn't own**: flag as "out of scope" but
   document
-- **Re-audit after fixes**: the auditor may check that fixes are actually in
-  place — ensure line numbers and file paths in the audit doc are updated
+- **Re-audit after fixes**: run `/reaudit status` to confirm all findings are
+  resolved. The status annotations (`<!-- AUDIT:STATUS=... -->`) track fix state
+  per finding, eliminating the need to manually update line numbers in the report.
