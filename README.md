@@ -32,7 +32,7 @@ graph TD
 
 ```markdown
 ### SSRF-1 — tool_fetch_url 无 URL 校验
-<!-- AUDIT:STATUS=fixed SEVERITY=high FILE=_core.py LINES=2713-2834 COMMIT=6ca5089 -->
+<!-- AUDIT:STATUS=fixed SEVERITY=high FILE=your-project/src/module.py LINES=100-120 COMMIT=abc1234 -->
 ```
 
 **轻量操作**（不改代码，只改注解行）：

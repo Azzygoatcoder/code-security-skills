@@ -90,5 +90,5 @@ See `code-security-audit/SKILL.md` Phase 3 and `code-security-audit/references/v
 Quick reference:
 ```markdown
 ### SSRF-1 — tool_fetch_url navigates to unvalidated URL
-<!-- AUDIT:STATUS=open SEVERITY=high FILE=sjtu_agent/agent/tools/_core.py LINES=2713-2834 -->
+<!-- AUDIT:STATUS=open SEVERITY=high FILE=your-project/src/module.py LINES=100-120 -->
 ```

@@ -49,7 +49,7 @@ mode is monkeypatch targets changing when code moves between modules.
 
 Commit all fixes at the current priority level together:
 ```bash
-git add -A
+git add -u
 git commit -m "fix: security — <summary> (P<N> SSRF-1 PATH-1 AUTH-1)"
 ```
 

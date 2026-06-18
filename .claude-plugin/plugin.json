@@ -6,5 +6,8 @@
     "name": "Azzygoatcoder"
   },
   "license": "MIT",
+  "repository": "https://github.com/Azzygoatcoder/code-security-skills",
+  "homepage": "https://github.com/Azzygoatcoder/code-security-skills#readme",
+  "bugs": "https://github.com/Azzygoatcoder/code-security-skills/issues",
   "keywords": ["security", "audit", "vulnerability", "code-review", "sast"]
 }
